@@ -1,3 +1,6 @@
+import ListItem from "@/components/ListItem";
+import ListItemSeparator from "@/components/ListItemSeperator";
+import { DATA, dataType } from "@/data/appData";
 import colors from "@/styles/colors";
 import defaultStyles from "@/styles/defaultStyles";
 import { useState } from "react";
@@ -5,25 +8,10 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View
 } from "react-native";
 
 export default function Index() {
-
-  // Declare data type for each item in array
-  type dataType = {
-    id: string; // unique identifier
-    title: string; // text displayed in FlatList
-  }
-
-  const DATA: dataType[] = [
-    {id: "1", title: "First Item"},
-    {id: "2", title: "Second Item"},
-    {id: "3", title: "Third Item"},
-    {id: "4", title: "Fourth Item"},
-    {id: "5", title: "Fifth Item"}
-  ];
 
   // Create a state variable to keep track of selected id
   const [selectedId, setSelectedId] = useState<string>("1");
@@ -44,13 +32,8 @@ export default function Index() {
             data={DATA}
             keyExtractor={(item: dataType) => item.id}
             extraData={selectedId}
-            renderItem={({item}) => (
-              <TouchableOpacity onPress={() => itemSelect(item) }>
-                <View style={[styles.flatListRow, {backgroundColor: item.id === selectedId ? colors.primary : colors.secondary}]}>
-                  <Text style={[styles.titleText, {color: item.id === selectedId ? colors.text.light : colors.text.dark}]}>{item.title}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
+            renderItem={() => <ListItem onPress={} isSelected={} item={}/>}
+            ItemSeparatorComponent={() => <ListItemSeparator />}
           />
         </View>
       </View>
@@ -73,8 +56,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   flatListRow: {
-    margin: 10,
-    backgroundColor: 'lightblue',
-    width: 200,
+    backgroundColor: colors.secondary,
+    padding: 5,
+    height: 60,
+    width: 350,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    marginTop: 5,
   },
 });
