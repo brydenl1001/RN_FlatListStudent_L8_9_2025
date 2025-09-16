@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.text.dark,
-    fontSize: 20,
+    fontSize: 24,
+    padding: 10,
   },
 });
